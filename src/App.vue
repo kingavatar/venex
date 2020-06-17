@@ -30,4 +30,14 @@ export default {
     text-align: center;
     color: #2c3e50;
 }
+html {
+    overflow: hidden !important;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
 </style>
