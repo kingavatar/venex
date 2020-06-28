@@ -5,7 +5,7 @@
                 <v-list-item>
                     <v-list-item-content>
                         <v-list-item-title class="title">
-                            Venex
+                            VEnEx
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
@@ -57,10 +57,24 @@ export default {
 </script>
 
 <style scoped>
+
 .drawer {
     display: flex;
-    height: 80vh;
+    background-color: #FBEEC1;
+    /* height: 80vh; */
+    height: 100%;
     flex-direction: column;
     justify-content: space-around;
+}
+a:hover {
+    background-color: #f8eaa4;
+    border-radius: 20%;
+}
+.title {
+    color: rgb(241, 138, 3);
+    font-size: xx-large;
+    /* border: 10mm; */
+    font-weight: bolder;
+    /* fon */
 }
 </style>

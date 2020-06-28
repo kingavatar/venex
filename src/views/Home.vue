@@ -8,14 +8,14 @@
                     height="86vh"
                     width="100%"
                     outline
-                    color="#F7F9FB"
+                    color=""
                 >
                     <v-col cols="12" class="my-3 py-6">
-                        <v-card shaped height="100%" width="100%">
-                            <v-card-title>
+                        <v-card shaped height="100%" width="100%" color="#FBEEC1">
+                            <v-card-title class="h3">
                                 Vehicle History
                                 <v-spacer></v-spacer>
-                                <v-text-field
+                                <v-text-field class="field"
                                     v-model="search"
                                     append-icon="mdi-magnify"
                                     label="Search"
@@ -23,7 +23,7 @@
                                     hide-details
                                 ></v-text-field>
                             </v-card-title>
-                            <v-data-table
+                            <v-data-table 
                                 :headers="headers"
                                 :items="vehicles"
                                 :items-per-page="10"
@@ -150,3 +150,18 @@ export default {
     }
 };
 </script>
+<style>
+.home {
+    display: inline-block;
+    padding: 2%;
+    width: 100%;
+    height: 100%;
+}
+.pa-6 {
+    color:#8b4513;
+}
+.h3 {
+    color: saddlebrown;
+    font-weight: bold;
+}
+</style>
