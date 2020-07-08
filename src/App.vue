@@ -40,7 +40,8 @@ html::-webkit-scrollbar {
     width: 0;
     height: 0;
 }
-.v-navigation-drawer__border {
-    background-color: rgba(1, 1, 1, 0);
+
+#app .v-navigation-drawer__border {
+    background-color: rgba(255, 255, 255, 0.9);
 }
 </style>
