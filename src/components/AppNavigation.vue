@@ -1,7 +1,7 @@
 <template>
     <v-navigation-drawer permanent app width="100px">
         <div class="drawer">
-            <v-list flat nav>
+            <v-list flat nav class="my-6">
                 <v-list-item>
                     <v-list-item-content>
                         <v-list-item-title class="title">
@@ -11,7 +11,7 @@
                 </v-list-item>
             </v-list>
             <v-list flat nav>
-                <v-list-item to="/" color="primary" class="px-6">
+                <v-list-item to="/" color="primary" class="px-6 my-6">
                     <v-tooltip right>
                         <template v-slot:activator="{ on, attrs }">
                             <v-icon large v-bind="attrs" v-on="on"
@@ -23,7 +23,7 @@
                 </v-list-item>
             </v-list>
             <v-list flat nav>
-                <v-list-item to="/search" color="primary" class="px-6">
+                <v-list-item to="/search" color="primary" class="px-6 my-6">
                     <v-tooltip right>
                         <template v-slot:activator="{ on, attrs }">
                             <v-icon large v-bind="attrs" v-on="on"
@@ -35,7 +35,47 @@
                 </v-list-item>
             </v-list>
             <v-list flat nav>
-                <v-list-item to="/settings" color="primary" class="px-6">
+                <v-list-item color="primary" class="px-6 my-6">
+                    <v-dialog v-model="dialog" persistent max-width="600px">
+                        <template v-slot:activator="{ on: dialog, attrs }">
+                            <v-tooltip right>
+                                <template v-slot:activator="{ on: tooltip }">
+                                    <v-icon
+                                        large
+                                        v-bind="attrs"
+                                        v-on="{ ...tooltip, ...dialog }"
+                                        >mdi-account-details-outline</v-icon
+                                    >
+                                </template>
+                                <span>Details Entry</span>
+                            </v-tooltip>
+                        </template>
+                        <v-card>
+                            <v-card-title>
+                                <span class="headline">User Profile</span>
+                            </v-card-title>
+                            <v-card-text> <UserForm /></v-card-text>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                    color="blue darken-1"
+                                    text
+                                    @click="dialog = false"
+                                    >Close</v-btn
+                                >
+                                <v-btn
+                                    color="blue darken-1"
+                                    text
+                                    @click="dialog = false"
+                                    >Save</v-btn
+                                >
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
+                </v-list-item>
+            </v-list>
+            <v-list flat nav>
+                <v-list-item to="/settings" color="primary" class="px-6 my-6">
                     <v-tooltip right>
                         <template v-slot:activator="{ on, attrs }">
                             <v-icon large v-bind="attrs" v-on="on"
@@ -51,8 +91,13 @@
 </template>
 
 <script>
+import UserForm from '@/components/UserForm.vue';
 export default {
-    name: 'AppNavigation'
+    name: 'AppNavigation',
+    components: { UserForm },
+    data: () => ({
+        dialog: false
+    })
 };
 </script>
 
@@ -62,6 +107,6 @@ export default {
     height: 80vh;
     flex-direction: column;
     align-content: center;
-    justify-content: space-around;
+    /* justify-content: space-around; */
 }
 </style>
