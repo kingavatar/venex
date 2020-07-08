@@ -1,49 +1,64 @@
 <template>
     <div class="home">
-        <v-container fluid>
+        <v-container fluid class="px-0">
             <v-row>
-                <h1 class="pa-6">Dashboard</h1>
-                <v-card
-                    shaped
-                    height="86vh"
-                    width="100%"
-                    outline
-                    color="#F7F9FB"
-                >
-                    <v-col cols="12" class="my-3 py-6">
-                        <v-card shaped height="100%" width="100%">
-                            <v-card-title>
-                                Vehicle History
-                                <v-spacer></v-spacer>
-                                <v-text-field
-                                    v-model="search"
-                                    append-icon="mdi-magnify"
-                                    label="Search"
-                                    single-line
-                                    hide-details
-                                ></v-text-field>
-                            </v-card-title>
-                            <v-data-table
-                                :headers="headers"
-                                :items="vehicles"
-                                :items-per-page="10"
-                                :search="search"
-                                class="elevation-1"
+                <v-col cols="9" class="pr-0">
+                    <v-row>
+                        <h1 class="px-6 pb-6">Dashboard</h1>
+                    </v-row>
+                    <v-card
+                        shaped
+                        height="86vh"
+                        width="100%"
+                        outlined
+                        color="#F7F9FB"
+                        class="mx-n3"
+                    >
+                        <v-col cols="12" class="my-3 py-12 px-12">
+                            <v-card
+                                shaped
+                                height="100%"
+                                width="100%"
+                                elevation="3"
                             >
-                                <template v-slot:item.icon="{ item }">
-                                    <v-icon>{{ item.icon }}</v-icon>
-                                </template>
-                                <template v-slot:item.action="{ item }">
-                                    <v-chip
-                                        :color="getColor(item.action)"
-                                        :text-color="getTextColor(item.action)"
-                                        >{{ item.action }}</v-chip
-                                    >
-                                </template>
-                            </v-data-table>
-                        </v-card>
-                    </v-col>
-                </v-card>
+                                <v-card-title>
+                                    Vehicle History
+                                    <v-spacer></v-spacer>
+                                    <v-text-field
+                                        v-model="search"
+                                        append-icon="mdi-magnify"
+                                        label="Search"
+                                        single-line
+                                        hide-details
+                                    ></v-text-field>
+                                </v-card-title>
+                                <v-data-table
+                                    :headers="headers"
+                                    :items="vehicles"
+                                    :items-per-page="10"
+                                    :search="search"
+                                    class="elevation-1"
+                                >
+                                    <template v-slot:item.icon="{ item }">
+                                        <v-icon>{{ item.icon }}</v-icon>
+                                    </template>
+                                    <template v-slot:item.action="{ item }">
+                                        <v-chip
+                                            :color="getColor(item.action)"
+                                            :text-color="
+                                                getTextColor(item.action)
+                                            "
+                                            >{{ item.action }}</v-chip
+                                        >
+                                    </template>
+                                </v-data-table>
+                            </v-card>
+                        </v-col>
+                    </v-card>
+                </v-col>
+                <v-col cols="3" class="pl-0">
+                    <Profile />
+                </v-col>
             </v-row>
         </v-container>
     </div>
@@ -51,10 +66,11 @@
 
 <script>
 // @ is an alias to /src
+import Profile from '@/components/Profile.vue';
 
 export default {
     name: 'Home',
-    components: {},
+    components: { Profile },
     data: () => ({
         search: '',
         headers: [

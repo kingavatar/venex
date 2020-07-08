@@ -8,7 +8,7 @@
         <v-app>
             <AppNavigation />
             <v-main>
-                <v-container fluid>
+                <v-container fluid class="pr-0">
                     <router-view />
                 </v-container>
             </v-main>
@@ -39,5 +39,8 @@ html {
 html::-webkit-scrollbar {
     width: 0;
     height: 0;
+}
+.v-navigation-drawer__border {
+    background-color: rgba(1, 1, 1, 0);
 }
 </style>

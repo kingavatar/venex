@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer permanent app width="120px">
+    <v-navigation-drawer permanent app width="100px">
         <div class="drawer">
             <v-list flat nav>
                 <v-list-item>
@@ -11,7 +11,7 @@
                 </v-list-item>
             </v-list>
             <v-list flat nav>
-                <v-list-item to="/" color="primary" class="px-8">
+                <v-list-item to="/" color="primary" class="px-6">
                     <v-tooltip right>
                         <template v-slot:activator="{ on, attrs }">
                             <v-icon large v-bind="attrs" v-on="on"
@@ -23,7 +23,7 @@
                 </v-list-item>
             </v-list>
             <v-list flat nav>
-                <v-list-item to="/search" color="primary" class="px-8">
+                <v-list-item to="/search" color="primary" class="px-6">
                     <v-tooltip right>
                         <template v-slot:activator="{ on, attrs }">
                             <v-icon large v-bind="attrs" v-on="on"
@@ -35,7 +35,7 @@
                 </v-list-item>
             </v-list>
             <v-list flat nav>
-                <v-list-item to="/settings" color="primary" class="px-8">
+                <v-list-item to="/settings" color="primary" class="px-6">
                     <v-tooltip right>
                         <template v-slot:activator="{ on, attrs }">
                             <v-icon large v-bind="attrs" v-on="on"
@@ -61,6 +61,7 @@ export default {
     display: flex;
     height: 80vh;
     flex-direction: column;
+    align-content: center;
     justify-content: space-around;
 }
 </style>
