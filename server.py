@@ -99,48 +99,12 @@ def last_hundred():
 # This End point is for Statistics in Profile Section
 @app.route('/api/stats')
 def get_profile_stats():
-    response = {'cards':[[
-        {
-            'title': 'Total Activity',
-            'number': '189',
-            'icon': 'mdi-car',
-            'color': 'purple'
-        },
-        {
-            'title': 'Entries',
-            'number': '174',
-            'icon': 'mdi-car-arrow-right',
-            'color': 'green'
-        }
-    ],
-        [
-        {
-            'title': 'Exits',
-            'number': '23',
-            'icon': 'mdi-car-arrow-left',
-            'color': 'red'
-        },
-        {
-            'title': 'Residents Parked',
-            'number': '56',
-            'icon': 'mdi-account',
-            'color': 'orange'
-        }
-    ],
-        [
-        {
-            'title': 'Visitors Parked',
-            'number': '24',
-            'icon': 'mdi-clock',
-            'color': 'blue'
-        },
-        {
-            'title': 'Commercial Parked',
-            'number': '7',
-            'icon': 'mdi-flag',
-            'color': 'pink'
-        }
-    ]]}
+    response = {'tnl':'189',
+    'entries':'174',
+    'exits':'23',
+    'rp':'56',
+    'vp':'24',
+    'cp':'7'}
     return jsonify(response)
 
 

@@ -184,7 +184,12 @@ export default {
             axios
                 .get(path)
                 .then(response => {
-                    this.cards = response.data.cards;
+                    this.cards[0][0].number = response.data.tnl;
+                    this.cards[0][1].number = response.data.entries;
+                    this.cards[1][0].number = response.data.exits;
+                    this.cards[1][1].number = response.data.rp;
+                    this.cards[2][0].number = response.data.vp;
+                    this.cards[2][1].number = response.data.cp;
                 })
                 .catch(error => {
                     console.log(error);
