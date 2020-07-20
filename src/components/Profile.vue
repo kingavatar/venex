@@ -101,6 +101,8 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
     name: 'Profile',
     data: () => ({
@@ -175,8 +177,22 @@ export default {
             this.$root.$emit('newCarDetect', true);
         }
     },
-    mounted() {
-        this.newCarAlertTrigger();
+    mounted: {
+        // this.newCarAlertTrigger();
+        getStatsfromBackEnd() {
+            const path = `http://localhost:5000/api/stats`;
+            axios
+                .get(path)
+                .then(response => {
+                    this.cards = response.data.cards;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    },
+    created() {
+        this.getStatsfromBackEnd();
     }
 };
 </script>
