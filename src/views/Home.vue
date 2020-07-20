@@ -68,92 +68,31 @@
 <script>
 // @ is an alias to /src
 import Profile from '@/components/Profile.vue';
-
+import axios from 'axios';
 export default {
     name: 'Home',
     components: { Profile },
     data: () => ({
         search: '',
-        headers: [
-            { align: 'start', sortable: false, value: 'icon' },
-            {
-                text: 'Vehicle Number',
-                value: 'number'
-            },
-            { text: 'Type', value: 'type' },
-            { text: 'Action', value: 'action' },
-            { text: 'TimeStamp', value: 'time' }
-        ],
-        vehicles: [
-            {
-                action: 'Entry',
-                number: 'XXXXXX',
-                type: 'Visitor Vehicle',
-                time: 'TimeStamp',
-                icon: 'mdi-clock'
-            },
-            {
-                action: 'Exit',
-                number: 'XXXXXX',
-                type: 'Resident Vehicle',
-                time: 'TimeStamp',
-                icon: 'mdi-account'
-            },
-
-            {
-                action: 'Entry',
-                number: 'XXXXXX',
-                type: 'Commercial Vehicle',
-                time: 'TimeStamp',
-                icon: 'mdi-flag'
-            },
-            {
-                action: 'Entry',
-                number: 'XXXXXX',
-                type: 'Visitor Vehicle',
-                time: 'TimeStamp',
-                icon: 'mdi-clock'
-            },
-            {
-                action: 'Exit',
-                number: 'XXXXXX',
-                type: 'Resident Vehicle',
-                time: 'TimeStamp',
-                icon: 'mdi-account'
-            },
-
-            {
-                action: 'Entry',
-                number: 'XXXXXX',
-                type: 'Commercial Vehicle',
-                time: 'TimeStamp',
-                icon: 'mdi-flag'
-            },
-            {
-                action: 'Entry',
-                number: 'XXXXXX',
-                type: 'Visitor Vehicle',
-                time: 'TimeStamp',
-                icon: 'mdi-clock'
-            },
-            {
-                action: 'Exit',
-                number: 'XXXXXX',
-                type: 'Resident Vehicle',
-                time: 'TimeStamp',
-                icon: 'mdi-account'
-            },
-
-            {
-                action: 'Entry',
-                number: 'XXXXXX',
-                type: 'Commercial Vehicle',
-                time: 'TimeStamp',
-                icon: 'mdi-flag'
-            }
-        ]
+        headers: [],
+        vehicles: []
     }),
     methods: {
+        // getVehicles (){
+        //     this.headers = this.getdataBackend().headers
+        // },
+        getdataBackend() {
+            const path = `http://localhost:5000/api/home`;
+            axios
+                .get(path)
+                .then(response => {
+                    this.headers = response.data.headers;
+                    this.vehicles = response.data.vehicles;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
         rowClicked(value) {
             this.$router.push({ path: `/details/${value.number}` });
         },
@@ -167,6 +106,9 @@ export default {
             else if (action === 'Exit') return 'red';
             else return 'orange';
         }
+    },
+    created() {
+        this.getdataBackend();
     }
 };
 </script>
