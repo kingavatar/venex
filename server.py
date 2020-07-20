@@ -13,7 +13,7 @@ cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Api End points the below one is for dashboard table.
 @app.route('/api/home')
-def last_hundred():
+def last_ten():
     response = {
         'headers': [
             {'align': 'start', 'sortable': False, 'value': 'icon'},
