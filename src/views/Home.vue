@@ -38,6 +38,7 @@
                                     :items-per-page="10"
                                     :search="search"
                                     class="elevation-1"
+                                    @click:row="rowClicked"
                                 >
                                     <template v-slot:item.icon="{ item }">
                                         <v-icon>{{ item.icon }}</v-icon>
@@ -153,6 +154,9 @@ export default {
         ]
     }),
     methods: {
+        rowClicked(value) {
+            this.$router.push({ path: `/details/${value.number}` });
+        },
         getColor(action) {
             if (action === 'Entry') return '#F3FEF3';
             else if (action === 'Exit') return '#FEF5F8';
