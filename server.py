@@ -25,7 +25,7 @@ def last_hundred():
             {
                 'action': 'Entry',
                 'number': 'XXXXXX',
-                type: 'Visitor Vehicle',
+                'type': 'Visitor Vehicle',
                 'time': 'TimeStamp',
                 'icon': 'mdi-clock'
             },
