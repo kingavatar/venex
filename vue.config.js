@@ -2,5 +2,5 @@ module.exports = {
     configureWebpack: {
         devtool: 'source-map'
     },
-    publicPath: '/venex/'
+    publicPath: process.env.NODE_ENV === 'production' ? '/venex/' : '/'
 };
