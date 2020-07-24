@@ -8,7 +8,7 @@
         <v-app>
             <AppNavigation />
             <v-main>
-                <v-container fluid class="pr-0">
+                <v-container fluid class="pr-0 pb-0">
                     <router-view />
                 </v-container>
             </v-main>
@@ -28,18 +28,22 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
+    padding-right: 20px;
+    max-height: 1888px;
     color: #2c3e50;
 }
-html {
-    overflow: hidden !important;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+
+/* html {
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+/*  -ms-overflow-style: none; /* Internet Explorer 10+ */
+/*
 }
 
 html::-webkit-scrollbar {
     width: 0;
     height: 0;
-}
+} */
 
 #app .v-navigation-drawer__border {
     background-color: rgba(255, 255, 255, 0.9);

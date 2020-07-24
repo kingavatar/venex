@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <v-container fluid class="px-0">
+        <v-container fluid class="px-0 pb-0">
             <v-row>
                 <v-col cols="9" class="pr-0">
                     <v-row>

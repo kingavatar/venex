@@ -107,6 +107,9 @@ export default {
     height: 80vh;
     flex-direction: column;
     align-content: center;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
     /* justify-content: space-around; */
 }
 </style>
