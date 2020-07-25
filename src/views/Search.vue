@@ -10,6 +10,7 @@
             outlined
             color="#F7F9FB"
             class="mx-n3"
+            v-if="!result"
         >
             <v-col>
                 <v-row align="center" class="ma-3 pa-3">
@@ -196,12 +197,16 @@
                 </v-row>
             </v-col>
         </v-card>
+        <SearchResult v-else v-on:goBack="handleResult" />
     </div>
 </template>
 <script>
+import SearchResult from '@/components/SearchResult.vue';
 export default {
+    components: { SearchResult },
     data() {
         return {
+            result: false,
             radios: 'any',
             timebefore: null,
             timeafter: null,
@@ -216,7 +221,10 @@ export default {
     },
     methods: {
         sendDataBackend() {
-            this.$router.push({ path: `/result` });
+            this.result = true;
+        },
+        handleResult() {
+            this.result = false;
         }
     }
 };
