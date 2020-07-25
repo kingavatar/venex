@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer permanent app width="100px">
+    <v-navigation-drawer v-model="drawer" app width="100px">
         <div class="drawer">
             <v-list flat nav class="my-6">
                 <v-list-item>
@@ -95,9 +95,17 @@ import UserForm from '@/components/UserForm.vue';
 export default {
     name: 'AppNavigation',
     components: { UserForm },
+    // props: { drawer: Boolean },
     data: () => ({
-        dialog: false
-    })
+        dialog: false,
+        drawer: true
+    }),
+
+    mounted: function() {
+        this.$root.$on('toggleNavDrawer', () => {
+            this.drawer = !this.drawer;
+        });
+    }
 };
 </script>
 

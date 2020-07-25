@@ -12,6 +12,18 @@
                 </v-tooltip>
                 <v-tooltip bottom>
                     <template v-slot:activator="{ on, attrs }">
+                        <v-btn
+                            icon
+                            @click="drawermethod"
+                            v-bind="attrs"
+                            v-on="on"
+                            ><v-icon>mdi-buffer</v-icon></v-btn
+                        ></template
+                    >
+                    <span>toggle Drawer</span>
+                </v-tooltip>
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on, attrs }">
                         <v-btn icon v-bind="attrs" v-on="on">
                             <v-icon>mdi-location-exit</v-icon>
                         </v-btn>
@@ -106,6 +118,12 @@ export default {
                 }
             ]
         ]
-    })
+    }),
+    methods: {
+        drawermethod() {
+            this.$root.$emit('toggleNavDrawer');
+            console.log('clicked');
+        }
+    }
 };
 </script>

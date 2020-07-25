@@ -9,7 +9,9 @@
             <AppNavigation />
             <v-main>
                 <v-container fluid class="pr-0 pb-0">
-                    <router-view />
+                    <keep-alive include="Home,Search" :max="10">
+                        <router-view />
+                    </keep-alive>
                 </v-container>
             </v-main>
         </v-app>
