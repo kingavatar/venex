@@ -106,7 +106,7 @@ def get_profile_stats():
     'cp':'7'}
     return jsonify(response)
 
-@app.route('/api/search',methods=['POST'])
+@app.route('/api/search',methods=['POST','GET'])
 def search():
     if request.method =='POST':
         radios= request.form.get('radios')
@@ -121,6 +121,89 @@ def search():
         datemenuafter= request.form.get('datemenuafter')
         print(request.form)
         return ''
+    elif request.method == 'GET':
+        #do your backend ops and give the required response like below
+        response = {
+            'headers': [
+                {'align': 'start', 'sortable': False, 'value': 'icon'},
+                {
+                    'text': 'Vehicle number',
+                    'value': 'number'
+                },
+                {'text': 'Type', 'value': 'type'},
+                {'text': 'Action', 'value': 'action'},
+                {'text': 'TimeStamp', 'value': 'time'}
+            ],
+            'vehicles': [
+                {
+                    'action': 'Entry',
+                    'number': 'XXXXXX',
+                    'type': 'Visitor Vehicle',
+                    'time': 'TimeStamp',
+                    'icon': 'mdi-clock'
+                },
+                {
+                    'action': 'Exit',
+                    'number': 'XXXXXX',
+                    'type': 'Resident Vehicle',
+                    'time': 'TimeStamp',
+                    'icon': 'mdi-account'
+                },
+
+                {
+                    'action': 'Entry',
+                    'number': 'XXXXXX',
+                    'type': 'Commercial Vehicle',
+                    'time': 'TimeStamp',
+                    'icon': 'mdi-flag'
+                },
+                {
+                    'action': 'Entry',
+                    'number': 'XXXXXX',
+                    'type': 'Visitor Vehicle',
+                    'time': 'TimeStamp',
+                    'icon': 'mdi-clock'
+                },
+                {
+                    'action': 'Exit',
+                    'number': 'XXXXXX',
+                    'type': 'Resident Vehicle',
+                    'time': 'TimeStamp',
+                    'icon': 'mdi-account'
+                },
+
+                {
+                    'action': 'Entry',
+                    'number': 'XXXXXX',
+                    'type': 'Commercial Vehicle',
+                    'time': 'TimeStamp',
+                    'icon': 'mdi-flag'
+                },
+                {
+                    'action': 'Entry',
+                    'number': 'XXXXXX',
+                    'type': 'Visitor Vehicle',
+                    'time': 'TimeStamp',
+                    'icon': 'mdi-clock'
+                },
+                {
+                    'action': 'Exit',
+                    'number': 'XXXXXX',
+                    'type': 'Resident Vehicle',
+                    'time': 'TimeStamp',
+                    'icon': 'mdi-account'
+                },
+
+                {
+                    'action': 'Entry',
+                    'number': 'XXXXXX',
+                    'type': 'Commercial Vehicle',
+                    'time': 'TimeStamp',
+                    'icon': 'mdi-flag'
+                }
+            ]
+        }
+        return jsonify(response)
     else:
         return '',400
 
