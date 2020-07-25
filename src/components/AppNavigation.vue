@@ -102,8 +102,10 @@ export default {
     }),
 
     mounted: function() {
-        this.$root.$on('toggleNavDrawer', () => {
+        this.$root.$on('toggleNavDrawer', value => {
             this.drawer = !this.drawer;
+            if (value == 'close') this.drawer = false;
+            else if (value == 'open') this.drawer = true;
         });
     }
 };

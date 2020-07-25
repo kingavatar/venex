@@ -122,7 +122,6 @@ export default {
     methods: {
         drawermethod() {
             this.$root.$emit('toggleNavDrawer');
-            console.log('clicked');
         }
     }
 };
