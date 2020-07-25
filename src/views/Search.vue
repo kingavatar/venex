@@ -22,7 +22,13 @@
                         prepend-inner-icon="mdi-car-side"
                         class="mx-3 px-6 rounded-tl-xl rounded-br-xl"
                     ></v-text-field>
-                    <v-btn outlined color="primary" class="mb-6">search</v-btn>
+                    <v-btn
+                        outlined
+                        color="primary"
+                        class="mb-6"
+                        @click="sendDataBackend"
+                        >search</v-btn
+                    >
                     <v-spacer></v-spacer>
                 </v-row>
                 <v-divider class="mx-3" />
@@ -207,6 +213,11 @@ export default {
             datemenubefore: false,
             datemenuafter: false
         };
+    },
+    methods: {
+        sendDataBackend() {
+            this.$router.push({ path: `/result` });
+        }
     }
 };
 </script>
