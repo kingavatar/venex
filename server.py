@@ -1,6 +1,5 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from flask_cors import CORS
-import requests
 
 # Tells where the template and static assets are.
 app = Flask(__name__,
@@ -106,6 +105,24 @@ def get_profile_stats():
     'vp':'24',
     'cp':'7'}
     return jsonify(response)
+
+@app.route('/api/search',methods=['POST'])
+def search():
+    if request.method =='POST':
+        radios= request.form.get('radios')
+        timebefore= request.form.get('timebefore')
+        timeafter= request.form.get('timeafter')
+        timemenubefore= request.form.get('timemenubefore')
+        timemenuafter= request.form.get('timemenuafter')
+        datebefore= request.form.get('datebefore')
+        dateafter= request.form.get('dateafter')
+        datetoday= request.form.get('datetoday')
+        datemenubefore= request.form.get('datemenubefore')
+        datemenuafter= request.form.get('datemenuafter')
+        print(request.form)
+        return ''
+    else:
+        return '',400
 
 
 # This is for Rendering and Redirecting Different Routes done by Vue Router

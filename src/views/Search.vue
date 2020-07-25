@@ -228,6 +228,7 @@
 </template>
 <script>
 import SearchResult from '@/components/SearchResult.vue';
+import axios from 'axios';
 export default {
     components: { SearchResult },
     data() {
@@ -245,84 +246,8 @@ export default {
                     'Address is Required when Name is Given'
             ],
             searchvalid: false,
-            headers: [
-                { align: 'start', sortable: false, value: 'icon' },
-                {
-                    text: 'Vehicle Number',
-                    value: 'number'
-                },
-                { text: 'Type', value: 'type' },
-                { text: 'Action', value: 'action' },
-                { text: 'TimeStamp', value: 'time' }
-            ],
-            vehicles: [
-                {
-                    action: 'Entry',
-                    number: 'XXXXXX',
-                    type: 'Visitor Vehicle',
-                    time: 'TimeStamp',
-                    icon: 'mdi-clock'
-                },
-                {
-                    action: 'Exit',
-                    number: 'XXXXXX',
-                    type: 'Resident Vehicle',
-                    time: 'TimeStamp',
-                    icon: 'mdi-account'
-                },
-
-                {
-                    action: 'Entry',
-                    number: 'XXXXXX',
-                    type: 'Commercial Vehicle',
-                    time: 'TimeStamp',
-                    icon: 'mdi-flag'
-                },
-                {
-                    action: 'Entry',
-                    number: 'XXXXXX',
-                    type: 'Visitor Vehicle',
-                    time: 'TimeStamp',
-                    icon: 'mdi-clock'
-                },
-                {
-                    action: 'Exit',
-                    number: 'XXXXXX',
-                    type: 'Resident Vehicle',
-                    time: 'TimeStamp',
-                    icon: 'mdi-account'
-                },
-
-                {
-                    action: 'Entry',
-                    number: 'XXXXXX',
-                    type: 'Commercial Vehicle',
-                    time: 'TimeStamp',
-                    icon: 'mdi-flag'
-                },
-                {
-                    action: 'Entry',
-                    number: 'XXXXXX',
-                    type: 'Visitor Vehicle',
-                    time: 'TimeStamp',
-                    icon: 'mdi-clock'
-                },
-                {
-                    action: 'Exit',
-                    number: 'XXXXXX',
-                    type: 'Resident Vehicle',
-                    time: 'TimeStamp',
-                    icon: 'mdi-account'
-                },
-
-                {
-                    action: 'Entry',
-                    number: 'XXXXXX',
-                    type: 'Commercial Vehicle',
-                    time: 'TimeStamp',
-                    icon: 'mdi-flag'
-                }
-            ],
+            headers: [],
+            vehicles: [],
             vehicleNo: '',
             name: '',
             address: '',
@@ -343,8 +268,27 @@ export default {
     methods: {
         sendDataBackend() {
             this.$refs.searchform.validate();
-            if (!!this.address.length || (!this.name && !this.address))
+            if (!!this.address.length || (!this.name && !this.address)) {
+                const path = `http://localhost:5000/api/search`;
+                const formData = new FormData();
+                formData.append('radios', this.radios);
+                formData.append('timebefore', this.timebefore);
+                formData.append('timeafter', this.timeafter);
+                formData.append('timemenubefore', this.timemenubefore);
+                formData.append('timemenuafter', this.timemenuafter);
+                formData.append('datebefore', this.datebefore);
+                formData.append('dateafter', this.dateafter);
+                formData.append('datetoday', this.datetoday);
+                formData.append('datemenubefore', this.datemenubefore);
+                formData.append('datemenuafter', this.datemenuafter);
+                axios
+                    .post(path, formData)
+                    .then(() => {})
+                    .catch(error => {
+                        console.log(error);
+                    });
                 this.result = true;
+            }
         },
         handleResult() {
             this.result = false;
