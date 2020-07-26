@@ -197,7 +197,12 @@
                 </v-row>
             </v-col>
         </v-card>
-        <SearchResult v-else v-on:goBack="handleResult" />
+        <SearchResult
+            v-else
+            v-on:goBack="handleResult"
+            v-bind:headers="this.headers"
+            v-bind:vehicles="this.vehicles"
+        />
     </div>
 </template>
 <script>
@@ -206,6 +211,84 @@ export default {
     components: { SearchResult },
     data() {
         return {
+            headers: [
+                { align: 'start', sortable: false, value: 'icon' },
+                {
+                    text: 'Vehicle Number',
+                    value: 'number'
+                },
+                { text: 'Type', value: 'type' },
+                { text: 'Action', value: 'action' },
+                { text: 'TimeStamp', value: 'time' }
+            ],
+            vehicles: [
+                {
+                    action: 'Entry',
+                    number: 'XXXXXX',
+                    type: 'Visitor Vehicle',
+                    time: 'TimeStamp',
+                    icon: 'mdi-clock'
+                },
+                {
+                    action: 'Exit',
+                    number: 'XXXXXX',
+                    type: 'Resident Vehicle',
+                    time: 'TimeStamp',
+                    icon: 'mdi-account'
+                },
+
+                {
+                    action: 'Entry',
+                    number: 'XXXXXX',
+                    type: 'Commercial Vehicle',
+                    time: 'TimeStamp',
+                    icon: 'mdi-flag'
+                },
+                {
+                    action: 'Entry',
+                    number: 'XXXXXX',
+                    type: 'Visitor Vehicle',
+                    time: 'TimeStamp',
+                    icon: 'mdi-clock'
+                },
+                {
+                    action: 'Exit',
+                    number: 'XXXXXX',
+                    type: 'Resident Vehicle',
+                    time: 'TimeStamp',
+                    icon: 'mdi-account'
+                },
+
+                {
+                    action: 'Entry',
+                    number: 'XXXXXX',
+                    type: 'Commercial Vehicle',
+                    time: 'TimeStamp',
+                    icon: 'mdi-flag'
+                },
+                {
+                    action: 'Entry',
+                    number: 'XXXXXX',
+                    type: 'Visitor Vehicle',
+                    time: 'TimeStamp',
+                    icon: 'mdi-clock'
+                },
+                {
+                    action: 'Exit',
+                    number: 'XXXXXX',
+                    type: 'Resident Vehicle',
+                    time: 'TimeStamp',
+                    icon: 'mdi-account'
+                },
+
+                {
+                    action: 'Entry',
+                    number: 'XXXXXX',
+                    type: 'Commercial Vehicle',
+                    time: 'TimeStamp',
+                    icon: 'mdi-flag'
+                }
+            ],
             result: false,
             radios: 'any',
             timebefore: null,
