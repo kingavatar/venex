@@ -233,6 +233,7 @@ export default {
     components: { SearchResult },
     data() {
         return {
+<<<<<<< HEAD
             addrRules: [
                 v =>
                     (!v && !this.name) ||
@@ -252,6 +253,10 @@ export default {
             name: '',
             address: '',
             action: 'any',
+=======
+            headers: [],
+            vehicles: [],
+>>>>>>> 9c087b5... Adding GET to Search View
             result: false,
             radios: 'any',
             timebefore: null,
