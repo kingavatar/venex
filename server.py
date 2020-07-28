@@ -119,7 +119,7 @@ def search():
         datetoday= request.form.get('datetoday')
         datemenubefore= request.form.get('datemenubefore')
         datemenuafter= request.form.get('datemenuafter')
-        print(request.form)
+        # print(request.form)
         return ''
     elif request.method == 'GET':
         #do your backend ops and give the required response like below
@@ -207,6 +207,23 @@ def search():
     else:
         return '',400
 
+
+@app.route('/api/userdetails', methods=['POST','GET'])
+def userDetails():
+    if request.method == 'POST':
+        firstname = request.form.get('firstname')
+        lastname = request.form.get('lastname')
+        address = request.form.get('address')
+        companyname = request.form.get('companyname')
+        middlename = request.form.get('middlename')
+        email = request.form.get('email')
+        phoneNo = request.form.get('phoneNo')
+        type = request.form.get('type')
+        action = request.form.get('action')
+        print(request.form)
+        return ''
+    else :
+        return '',400
 
 # This is for Rendering and Redirecting Different Routes done by Vue Router
 @app.route('/', defaults={'path': ''})

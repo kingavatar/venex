@@ -195,6 +195,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     props: { vistform: String, comform: String },
     data: () => ({
@@ -248,10 +249,32 @@ export default {
             else if (this.tab == 2) this.$refs.comform.resetValidation();
         },
         valid() {
-            if (this.tab == 0) this.resvalid;
-            else if (this.tab == 1) return this.vistvalid;
-            else if (this.tab == 2) return this.comvalid;
-            else return false;
+            if (
+                (this.tab == 0 && this.resvalid) ||
+                (this.tab == 0 && this.vistvalid) ||
+                (this.tab == 1 && this.comvalid)
+            ) {
+                const path = `http://localhost:5000/api/userdetails`;
+                const formData = new FormData();
+                formData.append('firstname', this.firstname);
+                formData.append('middlename', this.middlename);
+                formData.append('lastname', this.lastname);
+                formData.append('address', this.flatno);
+                formData.append('companyname', this.companyname);
+                formData.append('email', this.email);
+                formData.append('phoneNo', this.phonenumber);
+                this.tab == 1
+                    ? formData.append('type', 'Commercial')
+                    : formData.append('type', 'Visitor');
+                formData.append('action', this.action);
+                axios
+                    .post(path, formData)
+                    .then(() => {})
+                    .catch(error => {
+                        console.log(error);
+                    });
+                return this.vistvalid;
+            } else return false;
         }
     }
 };

@@ -293,6 +293,7 @@ export default {
                     });
                 this.result = true;
             }
+            console.log(this.searchvalid);
         },
         handleResult() {
             this.result = false;
