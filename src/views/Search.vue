@@ -17,6 +17,7 @@
                     <v-spacer></v-spacer>
                     <p>Vehicle Number</p>
                     <v-text-field
+                        v-model="vehicleNo"
                         label="Solo"
                         placeholder="Vehicle Number"
                         solo
@@ -36,28 +37,42 @@
                 <v-row align="start" class="mx-3 mt-3 pa-3 pt-6">
                     <h2>Advanced Options</h2>
                 </v-row>
-                <v-row align="center" class="mx-3 px-3 mt-6 pt-3">
-                    <p>For these Owners</p>
-                    <v-spacer></v-spacer>
+                <v-form ref="searchform" v-model="searchvalid">
+                    <v-row align="center" class="mx-3 px-3 mt-6 pt-3">
+                        <p>For these Owners</p>
+                        <v-spacer></v-spacer>
+                        <v-text-field
+                            v-model="name"
+                            label="Solo"
+                            placeholder="Name"
+                            :rules="nameRules"
+                            prepend-inner-icon="mdi-account"
+                            solo
+                            class="mx-6 px-3  rounded-tl-xl rounded-br-xl"
+                        ></v-text-field>
+                        <v-spacer></v-spacer>
 
-                    <v-text-field
-                        label="Solo"
-                        placeholder="Name"
-                        prepend-inner-icon="mdi-account"
-                        solo
-                        class="mx-6 px-3  rounded-tl-xl rounded-br-xl"
-                    ></v-text-field>
-                    <v-spacer></v-spacer>
-
-                    <v-text-field
-                        label="Solo"
-                        placeholder="Address"
-                        prepend-inner-icon="mdi-map-marker"
-                        solo
-                        class="mx-6 px-3 rounded-tl-xl rounded-br-xl"
-                    ></v-text-field>
-                    <v-spacer></v-spacer>
-                </v-row>
+                        <v-text-field
+                            v-model="address"
+                            label="Solo"
+                            placeholder="Address"
+                            :rules="addrRules"
+                            prepend-inner-icon="mdi-map-marker"
+                            solo
+                            class="mx-6 px-3 rounded-tl-xl rounded-br-xl"
+                        ></v-text-field>
+                        <v-spacer></v-spacer>
+                        <v-text-field
+                            v-model="companyname"
+                            label="Solo"
+                            placeholder="Compnay Name"
+                            prepend-inner-icon="mdi-account"
+                            solo
+                            v-if="radios == 'commercial'"
+                            class="mx-6 px-3  rounded-tl-xl rounded-br-xl"
+                        ></v-text-field>
+                    </v-row>
+                </v-form>
                 <v-row align="center" class="mx-3 px-3 mt-6 pt-3">
                     <p>Between this time</p>
                     <v-spacer></v-spacer>
@@ -184,7 +199,7 @@
                     </v-menu>
                     <v-spacer></v-spacer>
                 </v-row>
-                <v-row align="center" justify="center" class="mt-6 pt-3">
+                <v-row align="center" justify="space-around" class="mt-6 pt-3">
                     <v-radio-group v-model="radios" row>
                         <v-radio label="Resident" value="resident"></v-radio>
                         <v-radio
@@ -192,6 +207,11 @@
                             value="commercial"
                         ></v-radio>
                         <v-radio label="Visitor" value="visitor"></v-radio>
+                        <v-radio label="Any" value="any"></v-radio>
+                    </v-radio-group>
+                    <v-radio-group v-model="action" row>
+                        <v-radio label="Entry" value="entry"></v-radio>
+                        <v-radio label="Exit" value="exit"></v-radio>
                         <v-radio label="Any" value="any"></v-radio>
                     </v-radio-group>
                 </v-row>
@@ -211,6 +231,19 @@ export default {
     components: { SearchResult },
     data() {
         return {
+            addrRules: [
+                v =>
+                    (!v && !this.name) ||
+                    !!v ||
+                    'Address is Required when Name is Given'
+            ],
+            nameRules: [
+                v =>
+                    (!v && !this.address) ||
+                    (!!v && !!this.address) ||
+                    'Address is Required when Name is Given'
+            ],
+            searchvalid: false,
             headers: [
                 { align: 'start', sortable: false, value: 'icon' },
                 {
@@ -289,6 +322,10 @@ export default {
                     icon: 'mdi-flag'
                 }
             ],
+            vehicleNo: '',
+            name: '',
+            address: '',
+            action: 'any',
             result: false,
             radios: 'any',
             timebefore: null,
@@ -304,7 +341,8 @@ export default {
     },
     methods: {
         sendDataBackend() {
-            this.result = true;
+            this.$refs.searchform.validate();
+            if (this.searchvalid) this.result = true;
         },
         handleResult() {
             this.result = false;

@@ -45,7 +45,7 @@
                 </v-avatar>
             </v-row>
             <v-divider class="my-10" />
-            <v-row v-for="j in 3" :key="j" :justify="space - around">
+            <v-row v-for="j in 3" :key="j" justify="space-around">
                 <v-col v-for="k in 2" :key="k">
                     <v-card class="pa-2" color="#F7F9FB" outlined>
                         <v-list-item-content>

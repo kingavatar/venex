@@ -35,9 +35,7 @@
 export default {
     props: { headers: Array, vehicles: Array },
     data: () => ({
-        search: '',
-        headers: [],
-        vehicles: []
+        search: ''
     }),
     methods: {
         rowClicked(value) {

@@ -54,19 +54,30 @@
                             <v-card-title>
                                 <span class="headline">User Profile</span>
                             </v-card-title>
-                            <v-card-text> <UserForm /></v-card-text>
+                            <v-card-text>
+                                <UserForm ref="userform"
+                            /></v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
                                 <v-btn
                                     color="blue darken-1"
                                     text
-                                    @click="dialog = false"
+                                    @click="closeDialog"
                                     >Close</v-btn
+                                >
+                                <v-btn
+                                    icon
+                                    color="warning"
+                                    @click="resetFormValidation"
+                                    ><v-icon>mdi-restore-alert</v-icon></v-btn
+                                >
+                                <v-btn icon color="error" @click="resetForm"
+                                    ><v-icon>mdi-restore</v-icon></v-btn
                                 >
                                 <v-btn
                                     color="blue darken-1"
                                     text
-                                    @click="dialog = false"
+                                    @click="saveDialog"
                                     >Save</v-btn
                                 >
                             </v-card-actions>
@@ -98,9 +109,25 @@ export default {
     // props: { drawer: Boolean },
     data: () => ({
         dialog: false,
-        drawer: true
+        drawer: true,
+        tab: ''
     }),
-
+    methods: {
+        closeDialog() {
+            this.$refs.userform.resetValidation();
+            this.dialog = false;
+        },
+        saveDialog() {
+            this.$refs.userform.validate();
+            if (this.$refs.userform.valid()) this.dialog = false;
+        },
+        resetForm() {
+            this.$refs.userform.reset();
+        },
+        resetFormValidation() {
+            this.$refs.userform.resetValidation();
+        }
+    },
     mounted: function() {
         this.$root.$on('toggleNavDrawer', value => {
             this.drawer = !this.drawer;
