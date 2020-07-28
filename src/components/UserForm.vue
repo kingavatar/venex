@@ -12,6 +12,7 @@
                     <v-row>
                         <v-col cols="12" sm="6" md="4">
                             <v-text-field
+                                v-model="firstname"
                                 label="Legal first name*"
                                 :rules="nameRules"
                                 required
@@ -19,13 +20,14 @@
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
                             <v-text-field
+                                v-model="middlename"
                                 label="Legal middle name"
-                                :rules="nameRules"
                                 hint="Middle name Optional"
                             ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
                             <v-text-field
+                                v-model="lastname"
                                 label="Legal last name*"
                                 :rules="nameRules"
                                 hint="*Required"
@@ -35,6 +37,7 @@
                         </v-col>
                         <v-col cols="12">
                             <v-text-field
+                                v-model="email"
                                 label="Email"
                                 :rules="emailRules"
                                 hint="Email is Optional"
@@ -42,6 +45,7 @@
                         </v-col>
                         <v-col cols="12" sm="6">
                             <v-text-field
+                                v-model="phonenumber"
                                 label="Phone Number*"
                                 :rules="phoneRules"
                                 required
@@ -49,6 +53,7 @@
                         </v-col>
                         <v-col cols="12" sm="6">
                             <v-text-field
+                                v-model="flatno"
                                 label="Flat Number*"
                                 hint="whom they are visiting"
                                 persistent-hint
@@ -85,6 +90,7 @@
                     <v-row>
                         <v-col cols="12" sm="6">
                             <v-text-field
+                                v-model="firstname"
                                 label="Legal Name*"
                                 :rules="nameRules"
                                 required
@@ -98,6 +104,7 @@
                         </v-col> -->
                         <v-col cols="12" sm="6">
                             <v-text-field
+                                v-model="companyname"
                                 label="Company Name*"
                                 hint="*Required"
                                 :rules="compnameRules"
@@ -107,6 +114,7 @@
                         </v-col>
                         <v-col cols="12">
                             <v-text-field
+                                v-model="email"
                                 label="Email"
                                 :rules="emailRules"
                                 hint="Email is Optional"
@@ -114,6 +122,7 @@
                         </v-col>
                         <v-col cols="12" sm="6">
                             <v-text-field
+                                v-model="phonenumber"
                                 label="Phone Number*"
                                 :rules="phoneRules"
                                 required
@@ -121,6 +130,7 @@
                         </v-col>
                         <v-col cols="12" sm="6">
                             <v-text-field
+                                v-model="flatno"
                                 label="Flat Number*"
                                 hint="For Delivery"
                                 :rules="flatRules"

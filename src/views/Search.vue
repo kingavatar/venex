@@ -57,6 +57,7 @@
                             label="Solo"
                             placeholder="Address"
                             :rules="addrRules"
+                            @focus="resetvalidate"
                             prepend-inner-icon="mdi-map-marker"
                             solo
                             class="mx-6 px-3 rounded-tl-xl rounded-br-xl"
@@ -342,10 +343,14 @@ export default {
     methods: {
         sendDataBackend() {
             this.$refs.searchform.validate();
-            if (this.searchvalid) this.result = true;
+            if (!!this.address.length || (!this.name && !this.address))
+                this.result = true;
         },
         handleResult() {
             this.result = false;
+        },
+        resetvalidate() {
+            this.$refs.searchform.resetValidation();
         }
     }
 };
