@@ -233,7 +233,6 @@ export default {
     components: { SearchResult },
     data() {
         return {
-<<<<<<< HEAD
             addrRules: [
                 v =>
                     (!v && !this.name) ||
@@ -253,10 +252,6 @@ export default {
             name: '',
             address: '',
             action: 'any',
-=======
-            headers: [],
-            vehicles: [],
->>>>>>> 9c087b5... Adding GET to Search View
             result: false,
             radios: 'any',
             timebefore: null,
@@ -276,6 +271,10 @@ export default {
             if (!!this.address.length || (!this.name && !this.address)) {
                 const path = `http://localhost:5000/api/search`;
                 const formData = new FormData();
+                formData.append('vehicleNo', this.vehicleNo);
+                formData.append('name', this.name);
+                formData.append('address', this.address);
+                formData.append('action', this.action);
                 formData.append('radios', this.radios);
                 formData.append('timebefore', this.timebefore);
                 formData.append('timeafter', this.timeafter);
