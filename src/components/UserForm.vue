@@ -197,7 +197,7 @@
 <script>
 import axios from 'axios';
 export default {
-    props: { vistform: String, comform: String },
+    props: {},
     data: () => ({
         tab: '',
         vistvalid: true,
@@ -256,6 +256,7 @@ export default {
             ) {
                 const path = `http://localhost:5000/api/userdetails`;
                 const formData = new FormData();
+                formData.append('vehicleNo', this.vehicleNo);
                 formData.append('firstname', this.firstname);
                 formData.append('middlename', this.middlename);
                 formData.append('lastname', this.lastname);

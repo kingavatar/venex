@@ -10,6 +10,19 @@ app = Flask(__name__,
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
+triggerAction = False
+
+# For Triggering FrontEnd when a Vehicle is Detected will check websocket tomorrow
+@app.route('/api/action')
+def action():
+    global triggerAction
+    # Check whether it is residential or not and assign isResident true or false
+    isResident = False
+    response = {
+        'triggerAction':triggerAction,
+        'isResident': isResident
+    }
+    return jsonify(response)
 # Api End points the below one is for dashboard table.
 @app.route('/api/home')
 def last_ten():
@@ -109,6 +122,10 @@ def get_profile_stats():
 @app.route('/api/search',methods=['POST','GET'])
 def search():
     if request.method =='POST':
+        vehicleNo=request.form.get('vehicleNo')
+        name=request.form.get('name')
+        address=request.form.get('address')
+        action=request.form.get('action')
         radios= request.form.get('radios')
         timebefore= request.form.get('timebefore')
         timeafter= request.form.get('timeafter')

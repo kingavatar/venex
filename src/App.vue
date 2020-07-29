@@ -19,9 +19,27 @@
 </template>
 <script>
 import AppNavigation from '@/components/AppNavigation.vue';
+import axios from 'axios';
+
 export default {
     name: 'App',
-    components: { AppNavigation }
+    components: { AppNavigation },
+    data: () => ({ actionTrigger: false, isResident: false }),
+    methods: {
+        async checkTrigger() {
+            const path = `http://localhost:5000/api/action`;
+            axios
+                .get(path)
+                .then(response => {
+                    this.actionTrigger = response.data.actionTrigger;
+                    this.isResident = response.data.isResident;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    },
+    watch: {}
 };
 </script>
 <style>
