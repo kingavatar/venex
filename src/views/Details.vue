@@ -169,79 +169,20 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     data: () => ({
         search: '',
-        headers: [
-            { align: 'start', sortable: false, value: 'icon' },
-            {
-                text: 'Vehicle Number',
-                value: 'number'
-            },
-            { text: 'Type', value: 'type' },
-            { text: 'Action', value: 'action' },
-            { text: 'TimeStamp', value: 'time' }
-        ],
-        vehicles: [
-            {
-                action: 'Entry',
-                number: 'XXXXXX',
-                type: 'Resident Vehicle',
-                time: 'TimeStamp',
-                icon: 'mdi-account'
-            },
-            {
-                action: 'Exit',
-                number: 'XXXXXX',
-                type: 'Resident Vehicle',
-                time: 'TimeStamp',
-                icon: 'mdi-account'
-            },
-
-            {
-                action: 'Entry',
-                number: 'XXXXXX',
-                type: 'Resident Vehicle',
-                time: 'TimeStamp',
-                icon: 'mdi-account'
-            },
-            {
-                action: 'Entry',
-                number: 'XXXXXX',
-                type: 'Resident Vehicle',
-                time: 'TimeStamp',
-                icon: 'mdi-account'
-            },
-            {
-                action: 'Exit',
-                number: 'XXXXXX',
-                type: 'Resident Vehicle',
-                time: 'TimeStamp',
-                icon: 'mdi-account'
-            },
-
-            {
-                action: 'Entry',
-                number: 'XXXXXX',
-                type: 'Resident Vehicle',
-                time: 'TimeStamp',
-                icon: 'mdi-account'
-            },
-            {
-                action: 'Entry',
-                number: 'XXXXXX',
-                type: 'Resident Vehicle',
-                time: 'TimeStamp',
-                icon: 'mdi-account'
-            }
-        ],
-        entries: '11',
-        exits: '7',
-        type: 'Resident Vehicle',
-        name: 'Owner Name',
-        flatNo: 'Flat No',
-        email: 'XXXXXXXXXX@XXXXX.XXX',
-        phoneNo: 'XXXXXXXXXX'
+        headers: [],
+        vehicles: [],
+        entries: '',
+        exits: '',
+        type: '',
+        name: '',
+        flatNo: '',
+        email: '',
+        phoneNo: '',
+        vehicleNo: this.$route.params.vehicleNo
         // totalActColor: 'purple'
     }),
     methods: {
@@ -264,6 +205,34 @@ export default {
         goback() {
             this.$root.$emit('toggleNavDrawer', 'open');
             this.$router.back();
+        },
+        getdataBackend() {
+            const path = `http://localhost:5000/api/user`;
+            axios
+                .get(path)
+                .then(response => {
+                    this.entries = response.data.entries;
+                    this.exits = response.data.exits;
+                    this.type = response.data.type;
+                    this.name = response.data.name;
+                    this.flatNo = response.data.flatNo;
+                    this.email = response.data.email;
+                    this.phoneNo = response.data.phoneNo;
+                    this.headers = response.data.headers;
+                    this.vehicles = response.data.vehicles;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+        senddataBAckend() {
+            const path = `http://localhost:5000/api/user`;
+            axios
+                .post(path, { vehicleNo: this.vehicleNo })
+                .then()
+                .catch(error => {
+                    console.log(error);
+                });
         }
     },
     beforeMount() {

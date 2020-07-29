@@ -208,6 +208,87 @@ def search():
         return '',400
 
 
+@app.route('/api/userdetails', methods=['POST', 'GET'])
+def accountDetails():
+    vehicleNo=""
+    if request.method == 'POST':
+        vehicleNo = request.data.vehicleNo;
+        return ''
+    elif request.method == 'GET':
+        response = {'headers': [
+            {'align': 'start', 'sortable': False, 'value': 'icon'},
+            {
+                'text': 'Vehicle Number',
+                'value': 'number'
+            },
+            {'text': 'Type', 'value': 'type'},
+            {'text': 'Action', 'value': 'action'},
+            {'text': 'TimeStamp', 'value': 'time'}
+        ],
+            'vehicles': [
+            {
+                'action': 'Entry',
+                'number': 'XXXXXX',
+                'type': 'Resident Vehicle',
+                'time': 'TimeStamp',
+                'icon': 'mdi-account'
+            },
+            {
+                'action': 'Exit',
+                'number': 'XXXXXX',
+                'type': 'Resident Vehicle',
+                'time': 'TimeStamp',
+                'icon': 'mdi-account'
+            },
+
+            {
+                'action': 'Entry',
+                'number': 'XXXXXX',
+                'type': 'Resident Vehicle',
+                'time': 'TimeStamp',
+                'icon': 'mdi-account'
+            },
+            {
+                'action': 'Entry',
+                'number': 'XXXXXX',
+                'type': 'Resident Vehicle',
+                'time': 'TimeStamp',
+                'icon': 'mdi-account'
+            },
+            {
+                'action': 'Exit',
+                'number': 'XXXXXX',
+                'type': 'Resident Vehicle',
+                'time': 'TimeStamp',
+                'icon': 'mdi-account'
+            },
+
+            {
+                'action': 'Entry',
+                'number': 'XXXXXX',
+                'type': 'Resident Vehicle',
+                'time': 'TimeStamp',
+                'icon': 'mdi-account'
+            },
+            {
+                'action': 'Entry',
+                'number': 'XXXXXX',
+                'type': 'Resident Vehicle',
+                'time': 'TimeStamp',
+                'icon': 'mdi-account'
+            }
+        ],
+            'entries': '11',
+            'exits': '7',
+            'type': 'Resident Vehicle',
+            'name': 'Owner Name',
+            'flatNo': 'Flat No',
+            'email': 'XXXXXXXXXX@XXXXX.XXX',
+            'phoneNo': 'XXXXXXXXXX'}
+        return jsonify(response)
+    else:
+        return '', 400
+
 @app.route('/api/userdetails', methods=['POST','GET'])
 def userDetails():
     if request.method == 'POST':
