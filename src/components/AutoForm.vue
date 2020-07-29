@@ -1,37 +1,15 @@
 <template>
     <v-tabs :value="tab" @change="onTabChange" grow>
         <v-tab>
-            Residential
-        </v-tab>
-        <v-tab>
             Visitor
         </v-tab>
         <v-tab>
             Commercial
         </v-tab>
         <v-tab-item>
-            <v-form ref="resform" v-model="resvalid">
-                <v-text-field
-                    v-model="vehicleNo"
-                    label="Vehicle Number*"
-                    :rules="vehicleRules"
-                    requires
-                ></v-text-field>
-                <small>*indicates required field</small>
-            </v-form>
-        </v-tab-item>
-        <v-tab-item>
             <v-form ref="vistform" v-model="vistvalid"
                 ><v-container>
                     <v-row>
-                        <v-col cols="12">
-                            <v-text-field
-                                v-model="vehicleNo"
-                                label="Vehicle Number*"
-                                :rules="vehicleRules"
-                                requires
-                            ></v-text-field>
-                        </v-col>
                         <v-col cols="12" sm="6" md="4">
                             <v-text-field
                                 v-model="firstname"
@@ -94,12 +72,12 @@
                             ></v-select>
                         </v-col> -->
                         <!-- <v-col cols="12" sm="6"> -->
-                        <!-- <v-row align="center" justify="center">
+                        <v-row align="center" justify="center">
                             <v-radio-group v-model="action" row>
                                 <v-radio label="Entry" value="Entry"></v-radio>
                                 <v-radio label="Exit" value="Exit"></v-radio>
                             </v-radio-group>
-                        </v-row> -->
+                        </v-row>
                         <!-- </v-col> -->
                     </v-row>
                 </v-container>
@@ -110,14 +88,6 @@
             <v-form ref="comform" v-model="comvalid"
                 ><v-container>
                     <v-row>
-                        <v-col cols="12">
-                            <v-text-field
-                                v-model="vehicleNo"
-                                label="Vehicle Number*"
-                                :rules="vehicleRules"
-                                requires
-                            ></v-text-field>
-                        </v-col>
                         <v-col cols="12" sm="6">
                             <v-text-field
                                 v-model="firstname"
@@ -179,12 +149,12 @@
                             ></v-select>
                         </v-col> -->
                         <!-- <v-col cols="12" sm="6"> -->
-                        <!-- <v-row align="center" justify="center">
+                        <v-row align="center" justify="center">
                             <v-radio-group v-model="action" row>
                                 <v-radio label="Entry" value="Entry"></v-radio>
                                 <v-radio label="Exit" value="Exit"></v-radio>
                             </v-radio-group>
-                        </v-row> -->
+                        </v-row>
                         <!-- </v-col> -->
                     </v-row>
                 </v-container>
@@ -201,14 +171,11 @@ export default {
         tab: '',
         vistvalid: true,
         comvalid: true,
-        resvalid: true,
-        // action: 'Entry',
-        vehicleNo: '',
+        action: 'Entry',
         firstname: '',
         middlename: '',
         lastname: '',
         companyname: '',
-        vehicleRules: [v => !!v || 'Vehicle Number is required'],
         compnameRules: [v => !!v || 'Company Name is required'],
         nameRules: [
             v => !!v || 'Name is required',
@@ -233,24 +200,20 @@ export default {
             this.tab = clickedTab;
         },
         validate() {
-            if (this.tab == 0) this.$refs.resform.validate();
-            else if (this.tab == 1) this.$refs.vistform.validate();
-            else if (this.tab == 2) this.$refs.comform.validate();
+            if (this.tab == 0) this.$refs.vistform.validate();
+            else if (this.tab == 1) this.$refs.comform.validate();
         },
         reset() {
-            if (this.tab == 0) this.$refs.resform.reset();
-            else if (this.tab == 1) this.$refs.vistform.reset();
-            else if (this.tab == 2) this.$refs.comform.reset();
+            if (this.tab == 0) this.$refs.vistform.reset();
+            else if (this.tab == 1) this.$refs.comform.reset();
         },
         resetValidation() {
-            if (this.tab == 0) this.$refs.resform.resetValidation();
-            else if (this.tab == 1) this.$refs.vistform.resetValidation();
-            else if (this.tab == 2) this.$refs.comform.resetValidation();
+            if (this.tab == 0) this.$refs.vistform.resetValidation();
+            else if (this.tab == 1) this.$refs.comform.resetValidation();
         },
         valid() {
-            if (this.tab == 0) this.resvalid;
-            else if (this.tab == 1) return this.vistvalid;
-            else if (this.tab == 2) return this.comvalid;
+            if (this.tab == 0) return this.vistvalid;
+            else if (this.tab == 1) return this.comvalid;
             else return false;
         }
     }
