@@ -208,11 +208,11 @@ def search():
         return '',400
 
 
-@app.route('/api/userdetails', methods=['POST', 'GET'])
+@app.route('/api/user', methods=['POST', 'GET'])
 def accountDetails():
     vehicleNo=""
     if request.method == 'POST':
-        vehicleNo = request.data.vehicleNo;
+        vehicleNo = request.form.get('vehicleNo');
         return ''
     elif request.method == 'GET':
         response = {'headers': [

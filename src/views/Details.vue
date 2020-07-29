@@ -182,8 +182,7 @@ export default {
         flatNo: '',
         email: '',
         phoneNo: '',
-        vehicleNo: this.$route.params.vehicleNo
-        // totalActColor: 'purple'
+        vehicleNo: ''
     }),
     methods: {
         rowClicked(value) {
@@ -225,10 +224,13 @@ export default {
                     console.log(error);
                 });
         },
-        senddataBAckend() {
+        senddataBackend() {
             const path = `http://localhost:5000/api/user`;
+            const formData = new FormData();
+            this.vehicleNo = this.$route.params.vehicleNo;
+            formData.append('vehicleNo', this.vehicleNo);
             axios
-                .post(path, { vehicleNo: this.vehicleNo })
+                .post(path, formData)
                 .then()
                 .catch(error => {
                     console.log(error);
@@ -236,7 +238,9 @@ export default {
         }
     },
     beforeMount() {
+        this.senddataBackend();
         this.closeDrawer();
+        this.getdataBackend();
     },
     beforeDestroy() {
         this.$root.$emit('toggleNavDrawer', 'open');
