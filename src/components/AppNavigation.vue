@@ -149,4 +149,7 @@ export default {
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     /* justify-content: space-around; */
 }
+.drawer::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
 </style>
