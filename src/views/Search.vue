@@ -291,15 +291,27 @@ export default {
                     .catch(error => {
                         console.log(error);
                     });
+                this.getdataBackend();
                 this.result = true;
             }
-            console.log(this.searchvalid);
         },
         handleResult() {
             this.result = false;
         },
         resetvalidate() {
             this.$refs.searchform.resetValidation();
+        },
+        getdataBackend() {
+            const path = `http://localhost:5000/api/search`;
+            axios
+                .get(path)
+                .then(response => {
+                    this.headers = response.data.headers;
+                    this.vehicles = response.data.vehicles;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
     }
 };
