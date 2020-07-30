@@ -230,6 +230,7 @@ def accountDetails():
     vehicleNo=""
     if request.method == 'POST':
         vehicleNo = request.form.get('vehicleNo');
+        print(vehicleNo)
         return ''
     elif request.method == 'GET':
         response = {'headers': [
