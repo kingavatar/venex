@@ -98,17 +98,48 @@
                 </v-list-item>
             </v-list>
         </div>
+        <v-dialog v-model="triggerDialog" persistent max-width="600px">
+            <v-card>
+                <v-card-title>
+                    <span class="headline">User Profile</span>
+                </v-card-title>
+                <v-card-text> <AutoForm ref="autoform"/></v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                        color="blue darken-1"
+                        text
+                        @click="closeTriggerDialog"
+                        >Close</v-btn
+                    >
+                    <v-btn
+                        icon
+                        color="warning"
+                        @click="resetTriggerFormValidation"
+                        ><v-icon>mdi-restore-alert</v-icon></v-btn
+                    >
+                    <v-btn icon color="error" @click="resetTriggerForm"
+                        ><v-icon>mdi-restore</v-icon></v-btn
+                    >
+                    <v-btn color="blue darken-1" text @click="saveTriggerDialog"
+                        >Save</v-btn
+                    >
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-navigation-drawer>
 </template>
 
 <script>
 import UserForm from '@/components/UserForm.vue';
+import AutoForm from '@/components/AutoForm.vue';
 export default {
     name: 'AppNavigation',
-    components: { UserForm },
+    components: { UserForm, AutoForm },
     // props: { drawer: Boolean },
     data: () => ({
         dialog: false,
+        triggerDialog: false,
         drawer: true,
         tab: ''
     }),
@@ -126,6 +157,20 @@ export default {
         },
         resetFormValidation() {
             this.$refs.userform.resetValidation();
+        },
+        closeTriggerDialog() {
+            this.$refs.autoform.resetValidation();
+            this.triggerDialog = false;
+        },
+        saveTriggerDialog() {
+            this.$refs.autoform.validate();
+            if (this.$refs.autoform.valid()) this.triggerDialog = false;
+        },
+        resetTriggerForm() {
+            this.$refs.autoform.reset();
+        },
+        resetTriggerFormValidation() {
+            this.$refs.autoform.resetValidation();
         }
     },
     mounted: function() {
@@ -133,6 +178,11 @@ export default {
             this.drawer = !this.drawer;
             if (value == 'close') this.drawer = false;
             else if (value == 'open') this.drawer = true;
+        });
+        this.$root.$on('newCarDetect', value => {
+            if (value) {
+                this.triggerDialog = true;
+            }
         });
     }
 };

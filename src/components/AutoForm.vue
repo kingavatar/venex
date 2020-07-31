@@ -81,8 +81,11 @@
                         <!-- </v-col> -->
                     </v-row>
                 </v-container>
-                <small>*indicates required field</small></v-form
-            >
+                <small
+                    >*indicates required field Close will be disabled in
+                    Non-Demo Version</small
+                >
+            </v-form>
         </v-tab-item>
         <v-tab-item>
             <v-form ref="comform" v-model="comvalid"
@@ -158,8 +161,11 @@
                         <!-- </v-col> -->
                     </v-row>
                 </v-container>
-                <small>*indicates required field</small></v-form
-            >
+                <small
+                    >*indicates required field Close will be disabled in
+                    Non-Demo Version</small
+                >
+            </v-form>
         </v-tab-item>
     </v-tabs>
 </template>

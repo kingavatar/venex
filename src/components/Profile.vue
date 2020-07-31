@@ -2,14 +2,21 @@
     <div class="profile mr-6">
         <v-col cols="12">
             <v-row align="center" justify="space-between">
-                <v-tooltip bottom>
-                    <template v-slot:activator="{ on, attrs }">
-                        <v-btn icon v-bind="attrs" v-on="on">
-                            <v-icon>mdi-bell-outline</v-icon>
-                        </v-btn>
-                    </template>
-                    <span>Notification</span>
-                </v-tooltip>
+                <v-badge bordered color="error" :content="noofCars" overlap>
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                                icon
+                                v-bind="attrs"
+                                v-on="on"
+                                @click="newCarAlertTrigger"
+                            >
+                                <v-icon>mdi-bell-outline</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>Notification</span>
+                    </v-tooltip>
+                </v-badge>
                 <v-tooltip bottom>
                     <template v-slot:activator="{ on, attrs }">
                         <v-btn
@@ -67,6 +74,29 @@
                     </v-card>
                 </v-col>
             </v-row>
+            <v-row align="center" justify="space-around" class="mt-2 pt-2">
+                <v-btn
+                    color="warning"
+                    @click="noofCars++ && newCarAlertTrigger()"
+                    >No dialog Trigger</v-btn
+                >
+                <v-btn color="success" @click="newCarDialogTrigger"
+                    >Car dialog Trigger</v-btn
+                >
+            </v-row>
+            <v-row align="center" justify="center" class="mt-2 pt-2">
+                <v-alert
+                    :value="newcarAlert"
+                    border="left"
+                    dismissible
+                    icon="mdi-car-side"
+                    type="error"
+                    transition="scale-transition"
+                    elevation="9"
+                >
+                    New {{ noofCars }} Cars Detected</v-alert
+                >
+            </v-row>
         </v-col>
     </div>
 </template>
@@ -74,6 +104,8 @@
 export default {
     name: 'Profile',
     data: () => ({
+        newcarAlert: false,
+        noofCars: 6,
         cards: [
             [
                 {
@@ -122,7 +154,24 @@ export default {
     methods: {
         drawermethod() {
             this.$root.$emit('toggleNavDrawer');
+        },
+        removeCarAlert() {
+            setTimeout(() => {
+                this.newcarAlert = false;
+            }, 3000);
+        },
+        newCarAlertTrigger() {
+            this.newcarAlert = true;
+            this.removeCarAlert();
+        },
+        newCarDialogTrigger() {
+            this.noofCars++;
+            this.newCarAlertTrigger();
+            this.$root.$emit('newCarDetect', true);
         }
+    },
+    mounted() {
+        this.newCarAlertTrigger();
     }
 };
 </script>
