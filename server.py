@@ -1,6 +1,7 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, make_response
 from flask_cors import CORS
-
+from flask_socketio import SocketIO, emit
+import requests
 # Tells where the template and static assets are.
 app = Flask(__name__,
             static_folder="./dist/static",
@@ -9,20 +10,41 @@ app = Flask(__name__,
 # For Cross Origin Requests
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
+# Websocket setting
+app.config['SECRET_KEY'] = 'XXXXX'
+socketio = SocketIO(app, cors_allowed_origins='*')
 
-triggerAction = False
+
+def messageReceived(methods=['GET', 'POST']):
+    print('message was received!!!')
+
+
+@socketio.on('connect')
+def test_connect():
+    print("Web socket connected ")
+
+
+@socketio.on('msg')
+def handle_message(message):
+    print('received message: ' + message)
+
 
 # For Triggering FrontEnd when a Vehicle is Detected will check websocket tomorrow
-@app.route('/api/action')
+@app.route('/api/action', methods=['POST', 'GET'])
 def action():
-    global triggerAction
+    vehicleNo=''
+    if request.method =='GET':
+        return ''
+    elif request.method == 'POST':
+        isResident = False
+        vehicleNo = request.get_json()['data']
+        #check isResident and update it
+        socketio.emit('customEmit',  {'data': isResident}, broadcast=True)
     # Check whether it is residential or not and assign isResident true or false
-    isResident = False
-    response = {
-        'triggerAction':triggerAction,
-        'isResident': isResident
-    }
-    return jsonify(response)
+        return make_response('Success')
+    else :
+        return '',400
+
 # Api End points the below one is for dashboard table.
 @app.route('/api/home')
 def last_ten():
@@ -329,6 +351,6 @@ def userDetails():
 @app.route('/<path:path>')
 def catch_all(path):
     # if app.debug:
-        # return requests.get('http://localhost:8080/{}'.format(path)).text
-    return render_template("index.html")
+    #     return requests.get('http://localhost:8080/{}'.format(path)).text
+    return render_template("index.html", async_mode=socketio.async_mode)
 

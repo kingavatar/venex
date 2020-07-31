@@ -39,7 +39,12 @@ export default {
                 });
         }
     },
-    watch: {}
+    sockets: {
+        connect: function() {},
+        customEmit: function(msg) {
+            this.$root.$emit('newCarDetected', msg['data']);
+        }
+    }
 };
 </script>
 <style>
