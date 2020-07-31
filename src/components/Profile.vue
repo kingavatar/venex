@@ -81,7 +81,7 @@
                     >No dialog Trigger</v-btn
                 >
                 <v-btn color="success" @click="newCarDialogTrigger"
-                    >Car dialog Trigger</v-btn
+                    >dialog Trigger</v-btn
                 >
             </v-row>
             <v-row align="center" justify="center" class="mt-2 pt-2">
