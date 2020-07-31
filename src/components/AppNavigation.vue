@@ -180,9 +180,10 @@ export default {
             else if (value == 'open') this.drawer = true;
         });
         this.$root.$on('newCarDetect', value => {
-            if (value) {
-                this.triggerDialog = true;
-            }
+            if (value != null)
+                if (value) {
+                    this.triggerDialog = true;
+                }
         });
     }
 };

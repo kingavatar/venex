@@ -39,6 +39,7 @@ def action():
         isResident = False
         vehicleNo = request.get_json()['data']
         #check isResident and update it
+        # Definetly send isResident. If it is null frontend will not update data
         socketio.emit('customEmit',  {'data': isResident}, broadcast=True)
     # Check whether it is residential or not and assign isResident true or false
         return make_response('Success')

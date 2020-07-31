@@ -314,6 +314,11 @@ export default {
                     console.log(error);
                 });
         }
+    },
+    mounted() {
+        this.$root.$on('newCarDetect', value => {
+            if (value != null) this.sendDataBackend();
+        });
     }
 };
 </script>

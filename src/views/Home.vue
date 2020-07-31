@@ -109,6 +109,13 @@ export default {
     },
     created() {
         this.getdataBackend();
+    },
+    mounted() {
+        this.$root.$on('newCarDetect', value => {
+            if (value != null) {
+                this.getdataBackend();
+            }
+        });
     }
 };
 </script>

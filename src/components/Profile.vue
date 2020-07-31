@@ -2,7 +2,13 @@
     <div class="profile mr-6">
         <v-col cols="12">
             <v-row align="center" justify="space-between">
-                <v-badge bordered color="error" :content="noofCars" overlap>
+                <v-badge
+                    bordered
+                    color="error"
+                    :content="noofCars"
+                    :value="noofCars"
+                    overlap
+                >
                     <v-tooltip bottom>
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn
@@ -74,7 +80,7 @@
                     </v-card>
                 </v-col>
             </v-row>
-            <v-row align="center" justify="space-around" class="mt-2 pt-2">
+            <!-- <v-row align="center" justify="space-around" class="mt-2 pt-2">
                 <v-btn
                     color="warning"
                     @click="noofCars++ && newCarAlertTrigger()"
@@ -82,8 +88,8 @@
                 >
                 <v-btn color="success" @click="newCarDialogTrigger"
                     >dialog Trigger</v-btn
-                >
-            </v-row>
+                > 
+            </v-row> -->
             <v-row align="center" justify="center" class="mt-2 pt-2">
                 <v-alert
                     :value="newcarAlert"
@@ -162,23 +168,22 @@ export default {
                 this.$router.push('/login');
             });
         },
-        removeCarAlert() {
+        removeCarAlert(val) {
             setTimeout(() => {
                 this.newcarAlert = false;
+                if (val) this.noofCars = 0;
+                console.log(val);
             }, 3000);
         },
         newCarAlertTrigger() {
             this.newcarAlert = true;
-            this.removeCarAlert();
+            this.removeCarAlert(true);
         },
-        newCarDialogTrigger() {
+        newCarTrigger() {
             this.noofCars++;
-            this.newCarAlertTrigger();
-            this.$root.$emit('newCarDetect', true);
-        }
-    },
-    mounted: {
-        // this.newCarAlertTrigger();
+            this.newcarAlert = true;
+            this.removeCarAlert(false);
+        },
         getStatsfromBackEnd() {
             const path = `http://localhost:5000/api/stats`;
             axios
@@ -195,6 +200,15 @@ export default {
                     console.log(error);
                 });
         }
+    },
+    mounted() {
+        // this.newCarAlertTrigger();
+        this.$root.$on('newCarDetect', value => {
+            if (value != null) {
+                this.newCarTrigger();
+                this.getStatsfromBackEnd();
+            }
+        });
     },
     created() {
         this.getStatsfromBackEnd();
