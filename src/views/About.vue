@@ -1,5 +1,7 @@
 <template>
     <div class="about">
-        <h1>This is an about page</h1>
+        <h1>Venex</h1>
+        <h3>Redefining Surveillance</h3>
+        <p>Venex is an automated surveillance system. It is effective and efficient in monitoring of vehicles</p>
     </div>
 </template>
