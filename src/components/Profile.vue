@@ -31,7 +31,7 @@
                 </v-tooltip>
                 <v-tooltip bottom>
                     <template v-slot:activator="{ on, attrs }">
-                        <v-btn icon v-bind="attrs" v-on="on">
+                        <v-btn icon @click="logout" v-bind="attrs" v-on="on">
                             <v-icon>mdi-location-exit</v-icon>
                         </v-btn>
                     </template>
@@ -154,6 +154,11 @@ export default {
     methods: {
         drawermethod() {
             this.$root.$emit('toggleNavDrawer');
+        },
+        logout: function() {
+            this.$store.dispatch('logout').then(() => {
+                this.$router.push('/login');
+            });
         },
         removeCarAlert() {
             setTimeout(() => {
