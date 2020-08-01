@@ -86,7 +86,7 @@
                 </v-list-item>
             </v-list>
             <v-list flat nav>
-                <v-list-item to="/settings" color="primary" class="px-6 my-6">
+                <v-list-item to="/about" color="primary" class="px-6 my-6">
                     <v-tooltip right>
                         <template v-slot:activator="{ on, attrs }">
                             <v-icon large v-bind="attrs" v-on="on"
