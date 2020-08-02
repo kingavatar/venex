@@ -11,7 +11,71 @@
         </v-tab>
         <v-tab-item>
             <v-form ref="resform" v-model="resvalid">
+                <v-container v-if="this.$store.getters.isadmin">
+                    <v-row>
+                        <v-col cols="12">
+                            <v-text-field
+                                v-model="vehicleNo"
+                                label="Vehicle Number*"
+                                :rules="vehicleRules"
+                                requires
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                            <v-text-field
+                                v-model="firstname"
+                                label="Legal first name*"
+                                :rules="nameRules"
+                                required
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                            <v-text-field
+                                v-model="middlename"
+                                label="Legal middle name"
+                                hint="Middle name Optional"
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                            <v-text-field
+                                v-model="lastname"
+                                label="Legal last name*"
+                                :rules="nameRules"
+                                hint="*Required"
+                                persistent-hint
+                                required
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12">
+                            <v-text-field
+                                v-model="email"
+                                label="Email"
+                                :rules="emailRules"
+                                hint="Email is Optional"
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                            <v-text-field
+                                v-model="phonenumber"
+                                label="Phone Number*"
+                                :rules="phoneRules"
+                                required
+                            ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                            <v-text-field
+                                v-model="flatno"
+                                label="Flat Number*"
+                                hint="whom they are visiting"
+                                persistent-hint
+                                :rules="flatRules"
+                                required
+                            ></v-text-field>
+                        </v-col>
+                    </v-row>
+                </v-container>
                 <v-text-field
+                    v-else
                     v-model="vehicleNo"
                     label="Vehicle Number*"
                     :rules="vehicleRules"

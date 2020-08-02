@@ -88,18 +88,24 @@
             <!-- <v-list flat nav> -->
             <!-- <v-list-item to="/about" color="primary" class="px-6 my-6"> -->
             <!-- <v-list flat nav>
-                <v-list-item to="/settings" color="primary" class="px-6 my-6">
->>>>>>> 6565126... Removing Settings Page and Finshing it
+                <v-list-item to="/settings" color="primary" class="px-6 my-6">-->
+            <v-list flat nav v-if="this.$store.getters.isadmin">
+                <v-list-item
+                    href="https://drive.google.com/file/d/1OOBxosm6Mz4wadNlHOPZHQiL_1mCZIIV/view?usp=sharing"
+                    target="_blank"
+                    color="primary"
+                    class="px-6 my-6"
+                >
                     <v-tooltip right>
                         <template v-slot:activator="{ on, attrs }">
                             <v-icon large v-bind="attrs" v-on="on"
-                                >mdi-cog</v-icon
+                                >mdi-video-wireless</v-icon
                             >
                         </template>
-                        <span>Settings</span>
+                        <span>Video Stream</span>
                     </v-tooltip>
                 </v-list-item>
-            </v-list> -->
+            </v-list>
         </div>
         <v-dialog v-model="triggerDialog" persistent max-width="600px">
             <v-card>

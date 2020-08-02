@@ -10,20 +10,25 @@ export default new Vuex.Store({
             storage: window.sessionStorage
         })
     ],
-    state: { status: '' },
+    state: { status: '', isadmin: false },
     mutations: {
         auth_success(state) {
             state.status = 'success';
+        },
+        authisadmin(state) {
+            state.isadmin = true;
         },
         auth_error(state) {
             state.status = 'error';
         },
         logout(state) {
             state.status = '';
+            state.isadmin = false;
         }
     },
     actions: {
-        login({ commit }) {
+        login({ commit }, user) {
+            if (user.email == 'admin') commit('authisadmin');
             return commit('auth_success');
         },
         logout({ commit }) {
@@ -31,5 +36,8 @@ export default new Vuex.Store({
         }
     },
     modules: {},
-    getters: { authStatus: state => state.status }
+    getters: {
+        authStatus: state => state.status,
+        isadmin: state => state.isadmin
+    }
 });

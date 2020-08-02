@@ -12,6 +12,7 @@
                             <v-text-field
                                 label="Login"
                                 name="login"
+                                v-model="logins"
                                 prepend-icon="mdi-account"
                                 type="text"
                             ></v-text-field>
@@ -36,11 +37,12 @@
 </template>
 <script>
 export default {
-    data: () => ({}),
+    data: () => ({ logins: '' }),
     methods: {
         login: function() {
+            let email = this.logins;
             this.$store
-                .dispatch('login')
+                .dispatch('login', { email })
                 .then(() => this.$router.push('/'))
                 .catch(err => console.log(err));
         }
