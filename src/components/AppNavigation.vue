@@ -168,6 +168,7 @@ export default {
         saveTriggerDialog() {
             this.$refs.autoform.validate();
             if (this.$refs.autoform.valid()) this.triggerDialog = false;
+            console.log(this.$refs.autoform.valid());
         },
         resetTriggerForm() {
             this.$refs.autoform.reset();

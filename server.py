@@ -36,7 +36,7 @@ def action():
     if request.method =='GET':
         return ''
     elif request.method == 'POST':
-        isResident = False
+        isResident = True
         vehicleNo = request.get_json()['data']
         #check isResident and update it
         # Definetly send isResident. If it is null frontend will not update data
@@ -336,13 +336,14 @@ def userDetails():
         firstname = request.form.get('firstname')
         lastname = request.form.get('lastname')
         address = request.form.get('address')
-        companyname = request.form.get('companyname')
         middlename = request.form.get('middlename')
         email = request.form.get('email')
         phoneNo = request.form.get('phoneNo')
         type = request.form.get('type')
         action = request.form.get('action')
         print(request.form)
+        if(type=='Commercial'):
+            companyname = lastname
         return ''
     else :
         return '',400

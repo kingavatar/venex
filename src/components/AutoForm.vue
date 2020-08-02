@@ -72,12 +72,12 @@
                             ></v-select>
                         </v-col> -->
                         <!-- <v-col cols="12" sm="6"> -->
-                        <v-row align="center" justify="center">
+                        <!-- <v-row align="center" justify="center">
                             <v-radio-group v-model="action" row>
                                 <v-radio label="Entry" value="Entry"></v-radio>
                                 <v-radio label="Exit" value="Exit"></v-radio>
                             </v-radio-group>
-                        </v-row>
+                        </v-row> -->
                         <!-- </v-col> -->
                     </v-row>
                 </v-container>
@@ -107,10 +107,10 @@
                         </v-col> -->
                         <v-col cols="12" sm="6">
                             <v-text-field
-                                v-model="companyname"
+                                v-model="lastname"
                                 label="Company Name*"
                                 hint="*Required"
-                                :rules="compnameRules"
+                                :rules="nameRules"
                                 persistent-hint
                                 required
                             ></v-text-field>
@@ -152,12 +152,12 @@
                             ></v-select>
                         </v-col> -->
                         <!-- <v-col cols="12" sm="6"> -->
-                        <v-row align="center" justify="center">
+                        <!-- <v-row align="center" justify="center">
                             <v-radio-group v-model="action" row>
                                 <v-radio label="Entry" value="Entry"></v-radio>
                                 <v-radio label="Exit" value="Exit"></v-radio>
                             </v-radio-group>
-                        </v-row>
+                        </v-row> -->
                         <!-- </v-col> -->
                     </v-row>
                 </v-container>
@@ -182,7 +182,7 @@ export default {
         firstname: '',
         middlename: '',
         lastname: '',
-        companyname: '',
+        // companyname: '',
         compnameRules: [v => !!v || 'Company Name is required'],
         nameRules: [
             v => !!v || 'Name is required',
@@ -229,7 +229,7 @@ export default {
                 formData.append('middlename', this.middlename);
                 formData.append('lastname', this.lastname);
                 formData.append('address', this.flatno);
-                formData.append('companyname', this.companyname);
+                // formData.append('companyname', this.companyname);
                 formData.append('email', this.email);
                 formData.append('phoneNo', this.phonenumber);
                 this.tab == 1
@@ -238,7 +238,9 @@ export default {
                 formData.append('action', this.action);
                 axios
                     .post(path, formData)
-                    .then(() => {})
+                    .then(() => {
+                        this.$root.$emit('newCarDetect', false);
+                    })
                     .catch(error => {
                         console.log(error);
                     });
