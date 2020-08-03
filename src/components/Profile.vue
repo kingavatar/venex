@@ -113,7 +113,7 @@ export default {
     name: 'Profile',
     data: () => ({
         newcarAlert: false,
-        noofCars: 6,
+        noofCars: 0,
         cards: [
             [
                 {
