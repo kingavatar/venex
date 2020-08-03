@@ -37,6 +37,8 @@
                                     :items="vehicles"
                                     :items-per-page="10"
                                     :search="search"
+                                    sort-by="TimeStamp"
+                                    sort-desc
                                     class="elevation-1"
                                     @click:row="rowClicked"
                                 >

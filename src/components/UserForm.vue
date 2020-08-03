@@ -21,7 +21,7 @@
                                 requires
                             ></v-text-field>
                         </v-col>
-                        <v-col cols="12" sm="6" md="4">
+                        <v-col cols="12">
                             <v-text-field
                                 v-model="firstname"
                                 label="Legal first name*"
@@ -29,7 +29,7 @@
                                 required
                             ></v-text-field>
                         </v-col>
-                        <v-col cols="12" sm="6" md="4">
+                        <!-- <v-col cols="12" sm="6" md="4">
                             <v-text-field
                                 v-model="middlename"
                                 label="Legal middle name"
@@ -45,15 +45,15 @@
                                 persistent-hint
                                 required
                             ></v-text-field>
-                        </v-col>
-                        <v-col cols="12">
+                        </v-col> -->
+                        <!-- <v-col cols="12">
                             <v-text-field
                                 v-model="email"
                                 label="Email"
                                 :rules="emailRules"
                                 hint="Email is Optional"
                             ></v-text-field>
-                        </v-col>
+                        </v-col> -->
                         <v-col cols="12" sm="6">
                             <v-text-field
                                 v-model="phonenumber"
@@ -96,7 +96,7 @@
                                 requires
                             ></v-text-field>
                         </v-col>
-                        <v-col cols="12" sm="6" md="4">
+                        <v-col cols="12">
                             <v-text-field
                                 v-model="firstname"
                                 label="Legal first name*"
@@ -104,7 +104,7 @@
                                 required
                             ></v-text-field>
                         </v-col>
-                        <v-col cols="12" sm="6" md="4">
+                        <!-- <v-col cols="12" sm="6" md="4">
                             <v-text-field
                                 v-model="middlename"
                                 label="Legal middle name"
@@ -128,7 +128,7 @@
                                 :rules="emailRules"
                                 hint="Email is Optional"
                             ></v-text-field>
-                        </v-col>
+                        </v-col> -->
                         <v-col cols="12" sm="6">
                             <v-text-field
                                 v-model="phonenumber"
@@ -206,14 +206,14 @@
                                 required
                             ></v-text-field>
                         </v-col>
-                        <v-col cols="12">
+                        <!-- <v-col cols="12">
                             <v-text-field
                                 v-model="email"
                                 label="Email"
                                 :rules="emailRules"
                                 hint="Email is Optional"
                             ></v-text-field>
-                        </v-col>
+                        </v-col> -->
                         <v-col cols="12" sm="6">
                             <v-text-field
                                 v-model="phonenumber"
