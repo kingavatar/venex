@@ -239,7 +239,7 @@ export default {
                 axios
                     .post(path, formData)
                     .then(() => {
-                        this.$root.$emit('newCarDetect', false);
+                        this.$root.$emit('refreshData', true);
                     })
                     .catch(error => {
                         console.log(error);

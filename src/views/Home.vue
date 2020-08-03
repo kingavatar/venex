@@ -118,6 +118,10 @@ export default {
                 this.getdataBackend();
             }
         });
+        this.$root.$on('refreshData', value => {
+            if (this.value) console.log('true');
+            this.getdataBackend();
+        });
     }
 };
 </script>
