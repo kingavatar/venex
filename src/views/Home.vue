@@ -119,7 +119,7 @@ export default {
             }
         });
         this.$root.$on('refreshData', value => {
-            if (this.value) console.log('true');
+            if (value) console.log('true');
             this.getdataBackend();
         });
     }
