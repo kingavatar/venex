@@ -46,8 +46,8 @@
                 </h2>
                 <v-avatar size="90">
                     <img
-                        src="https://cdn.vuetifyjs.com/images/john.jpg"
-                        alt="John"
+                        src="https://avatars1.githubusercontent.com/u/31726036?s=460&u=0718acf01040da3a43822841035fd3f8ea13766c&v=4"
+                        alt="KA"
                     />
                 </v-avatar>
             </v-row>

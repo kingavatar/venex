@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
-import store from '../store/index';
+// import store from '../store/index';
 Vue.use(VueRouter);
 
 const routes = [
@@ -69,14 +69,14 @@ const router = new VueRouter({
 });
 
 export default router;
-router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (store.getters.authStatus == 'success') {
-            next();
-            return;
-        }
-        next('/login');
-    } else {
-        next();
-    }
-});
+// router.beforeEach((to, from, next) => {
+//     if (to.matched.some(record => record.meta.requiresAuth)) {
+//         if (store.getters.authStatus == 'success') {
+//             next();
+//             return;
+//         }
+//         next('/login');
+//     } else {
+//         next();
+//     }
+// });
