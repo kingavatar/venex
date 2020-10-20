@@ -20,8 +20,8 @@
                             <v-col cols="4" class="ma-2 pa-2">
                                 <v-avatar size="100">
                                     <img
-                                        src="https://cdn.vuetifyjs.com/images/john.jpg"
-                                        alt="John"
+                                        src="@/assets/supportmale.png"
+                                        alt="Some Guy"
                                     />
                                 </v-avatar>
                             </v-col>
